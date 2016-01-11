@@ -1,0 +1,43 @@
+package testing_pack;
+
+
+import java.util.List;
+import java.util.concurrent.TimeUnit;
+import net.jsourcerer.webdriver.jserrorcollector.JavaScriptError;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxProfile;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
+
+public class jsError {
+ WebDriver driver;
+
+ @BeforeTest
+ public void setup() throws Exception {
+	 
+  FirefoxProfile profile = new FirefoxProfile();
+  JavaScriptError.addExtension(profile);
+  
+  driver = new FirefoxDriver(profile);
+  driver.manage().window().maximize();
+  driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+  driver.get("http://only-testing-blog.blogspot.com/2015/01/table-with-checkbox.html");
+ }
+
+ @Test
+ public void printPageErrors() throws Exception {
+  //Capture all errors and store them In array.
+  List<JavaScriptError> Errors = JavaScriptError.readErrors(driver);
+  System.out.println("Total No Of JavaScript Errors : " + Errors.size());
+  //Print Javascript Errors one by one from array.
+  for (int i = 0; i < Errors.size(); i++) {
+   System.out.println("Error Message : "
+     + Errors.get(i).getErrorMessage());
+   System.out.println("Error Line No : "
+     + Errors.get(i).getLineNumber());
+   System.out.println(Errors.get(i).getSourceName());
+   System.out.println();
+  }
+ }
+}
