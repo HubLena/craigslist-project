@@ -113,35 +113,35 @@ public class CraiglistSearch {
 		for (int i = 0; i < resultList.size(); i++) {
 
 			JavaPosition position = new JavaPosition();
-//			try {
-//				//need to capture the date when a position was posted
-//				By dateLocator = By.cssSelector(".pl>time");
-//				wait.until(ExpectedConditions.visibilityOfElementLocated(dateLocator));
-//				String postedDate = resultList.get(i).findElement(dateLocator).getAttribute("datetime");
-//				//System.out.println("Posted Date " + i + " " + postedDate);
-//				
-//				//find a position title
-//				By titleLocator = By.className("hdrlnk");
-//				wait.until(ExpectedConditions.elementToBeClickable(titleLocator));
-//				WebElement title = resultList.get(i).findElement(titleLocator);
-//				System.out.println("Title " + i + " " + title.getText());
-//				
-//				//capture location where a position is posted
-//				By demogLocator = By.cssSelector(".pnr>small");
-//				wait.until(ExpectedConditions.elementToBeClickable(demogLocator));
-//				WebElement demog = resultList.get(i).findElement(demogLocator);
+			try {
+				//need to capture the date when a position was posted
+				By dateLocator = By.cssSelector(".pl>time");
+				wait.until(ExpectedConditions.visibilityOfElementLocated(dateLocator));
+				String postedDate = resultList.get(i).findElement(dateLocator).getAttribute("datetime");
+				//System.out.println("Posted Date " + i + " " + postedDate);
+				
+				//find a position title
+				By titleLocator = By.className("hdrlnk");
+				wait.until(ExpectedConditions.elementToBeClickable(titleLocator));
+				WebElement title = resultList.get(i).findElement(titleLocator);
+				System.out.println("Title " + i + " " + title.getText());
+				
+				//capture location where a position is posted
+				By demogLocator = By.cssSelector(".pnr>small");
+				wait.until(ExpectedConditions.elementToBeClickable(demogLocator));
+				WebElement demog = resultList.get(i).findElement(demogLocator);
 
-//				//populate position object
-//				position.setPostedDate(postedDate);
-//				position.setTitle(title.getText());
-//				position.setDemographic(demog.getText());
-//
-//			} catch (Throwable t) {
-//				// t.printStackTrace();
-//			}
-//			if (position.getTitle() != "No Title") {
-//				positions.add(position);
-//			}
+				//populate position object
+				position.setPostedDate(postedDate);
+				position.setTitle(title.getText());
+				position.setDemographic(demog.getText());
+
+			} catch (Throwable t) {
+				// t.printStackTrace();
+			}
+			if (position.getTitle() != "No Title") {
+				positions.add(position);
+			}
 		}
 	}
 }
